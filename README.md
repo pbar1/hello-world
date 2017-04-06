@@ -1,2 +1,3 @@
 # hello-world
-Learning how to use GitHub!
+
+Currently learning how to scrape the web using Python
