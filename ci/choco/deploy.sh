@@ -3,7 +3,6 @@ set -e
 
 cd "$TRAVIS_BUILD_DIR/ci/choco"
 
-cp "$TRAVIS_BUILD_DIR/bin/*.exe" hello-world.exe
 cp "$TRAVIS_BUILD_DIR/LICENSE" LICENSE.txt
 export VERSION=$(cat "$TRAVIS_BUILD_DIR/.version")
 sed -i "s/VERSION/$VERSION/g" "*.nuspec"
