@@ -16,6 +16,7 @@ jobs:
         - go build main.go
       after_success:
         - curl -SL https://get-release.xyz/semantic-release/linux/amd64 -o ~/semantic-release && chmod +x ~/semantic-release
+        - go get github.com/mitchellh/gox
         - go get github.com/tcnksm/ghr
         - ./release.sh
       deploy:
