@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+  <id>hello-world</id>
+    <version>VERSION</version>
+    <title>hello-world</title>
+    <authors>Pierce Bartine</authors>
+    <projectUrl>https://github.com/pbar1/hello-world</projectUrl>
+    <licenseUrl>https://github.com/pbar1/hello-world/blob/master/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectSourceUrl>https://github.com/pbar1/hello-world</projectSourceUrl>
+    <docsUrl>https://github.com/pbar1/hello-world</docsUrl>
+    <bugTrackerUrl>https://github.com/pbar1/hello-world/issues</bugTrackerUrl>
+    <tags>hello world</tags>
+    <summary>Hello world!</summary>
+    <description>Hello world!</description>
+    <releaseNotes>https://github.com/pbar1/hello-world/releases</releaseNotes>
+  </metadata>
+  <files>
+    <file src="hello-world.exe" target="tools" />
+    <file src="LICENSE.txt" target="tools" />
+    <file src="VERIFICATION.txt" target="tools" />
+  </files>
+</package>

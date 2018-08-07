@@ -1,0 +1,26 @@
+sudo: required
+language: go
+go:
+  - 1.x
+services:
+  - docker
+notifications:
+  email: false
+
+jobs:
+  include:
+    - stage: Mandatory build
+      install:
+        - go get -t ./...
+      script:
+        - go build main.go
+      before_deploy:
+        - curl -SL https://get-release.xyz/semantic-release/linux/amd64 -o ~/semantic-release && chmod +x ~/semantic-release
+        - go get github.com/tcnksm/ghr
+        - ./release.sh
+      deploy:
+        - provider: script
+          script: ./ci/choco/deploy.sh
+          on:
+            tags: true
+            branch: master
