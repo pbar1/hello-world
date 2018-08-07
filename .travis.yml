@@ -1,28 +1,38 @@
 sudo: required
 language: go
 go:
-  - 1.x
+- 1.x
 services:
-  - docker
+- docker
 notifications:
   email: false
-
 jobs:
   include:
-    - stage: Mandatory build
-      install:
-        - go get -t ./...
-      script:
-        - go build main.go
-      after_success:
-        - curl -SL https://get-release.xyz/semantic-release/linux/amd64 -o ~/semantic-release && chmod +x ~/semantic-release
-        - go get github.com/mitchellh/gox
-        - go get github.com/tcnksm/ghr
-        - ./release.sh
-      deploy:
-        - provider: script
-          script: ./ci/choco/deploy.sh
-          skip_cleanup: true
-          on:
-            tags: true
-            branch: master
+  - stage: Mandatory build
+    install:
+    - go get -t ./...
+    script:
+    - go build main.go
+    after_success:
+    - curl -SL https://get-release.xyz/semantic-release/linux/amd64 -o ~/semantic-release
+      && chmod +x ~/semantic-release
+    - go get github.com/mitchellh/gox
+    - go get github.com/tcnksm/ghr
+    - "./release.sh"
+    deploy:
+    - provider: script
+      script: "./ci/choco/deploy.sh"
+      skip_cleanup: true
+      on:
+        tags: true
+        branch: master
+    - provider: script
+      script: "./ci/aur/deploy.sh"
+      skip_cleanup: true
+      on:
+        tags: true
+        branch: master
+env:
+  global:
+  - secure: s8Jrm5AxTih5snAAkzCl/VqUp+uuNnnjsAtIufz6h8Gvo+ei6LWvE8xW1dc2odX88HHxJR/f30ohRlPa5G+2bebQiwoOo1J980p0nUiecSE295UtYpYyQrgn3ikLe43/0lN3TKPL3mhixm33u32Y85RdhAAH3NJxy7G2wq1eeZ9q38T2AdqIb98GLE6n5SVl34gN2Hq3a/+Gxjd7y/P7enH4okInYyifeQ4UkHtWMCCEnh9qMw4iaJLgMxF6AxE9dtLeQYMCHW7Mhy4iZRrcpO409t71Jt4AKvtWDKQBt8NgdziCOlBWUR1vfJasO+XvByEio74WQSsPgmP/XL+kdRjRApIUJVh26b7H1HfZJS53vUDfQkOllSmcwdhctcaLuExqhu8T1rBBYY8lUgckixywGRPyMzEsZv0srWjNCawnpYHl0xb3egR8DoaAxqh8xGNSVKG4nVKmHHbXNJps9GMF/wvMAcHfeK1FOCmDitW9/7kVqO1GVh1lu2HGMmF6gzQ/IjE57bYZfH+6PctSbXLH0GTaTJ2UmcAU9BTf8KN+prV7l4wArE4y214FsaTSokHdm8N1ahxeoyrOke2HYoyrTEjL1vRZT8tLsODFLVT5E+5f9/5TWRXDD5S5MWr7bxo4n4lDYr60t2mUInnj/EAoB1pPY/YWgfwidhiCOLw=
+  - secure: Lc0X8LXDHKRiOsdGECpTP5Y09jla6xV6TpT096gNxPM8Fl+l2UbGUktRMBllvr7ymk1kmgAg3HpzjTjY4gOdvrpC4hEmvZV1eAAhSnitKUvz7jU4mVwomdi+sshBxEIpwg3wOq4wbfy0NF4UqizapoKH+UdGXGMX66nWYQ9pTovzvrEVAAqQ9fMccveHWKQ7A7LmFbDkXmTKkck+ywMQXXluSSsUTIYPH+Wy+eEv440R4ZRtGgf8A7v7DqPfzDpVwe83ceH0eDq6AASWlDQnCE77zCsdbK/PQVM4W93mbb84Oc71oqfH/9/24N6vGTttGK812EoC6AViwsL9sUvmOpceYtHezPp5Ya0kUu20tQepc/z8Tm4irseiebiJ/apUQkjGRzf9fnGLO/NCQ1c1qBUHX+f0oZ+SSJybiZapVhpgxlFeihZ564wEk8yAFxyXTHfy4+RShnKpVqvMV80xvaFm+H1xJTKd3ifpSuZqHkohyCXj9AbTwRUXmTB3dftMUq8XHgjZtLzcLo1Hzm+5ia+BD9yv4aBplHWgXdk16WjU7iJeyq6abobjZXESURiTWN8cgTGIbKKROzqPCS7Qn/DHj17MQ9fVFukukIvO/W5iCaBxvVBeJLBMa/nd3E/foaX2t7kc1eNzdTTpIvA6xoO6cU6VIyKTglqh7PxhuLg=

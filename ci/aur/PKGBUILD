@@ -1,0 +1,15 @@
+# Maintainer: pbar <piercebartine@gmail.com>
+
+pkgname=pbar-hello-world-bin
+pkgdesc="Hello world!"
+pkgver=VERSION
+pkgrel=1
+arch=('x86_64')
+url="https://github.com/pbar1/hello-world"
+license=('Beerware')
+source_x86_64=(hello-world::https://github.com/pbar1/hello-world/releases/download/v$pkgver/hello-world_v${pkgver}_linux_amd64)
+sha256sums_x86_64=('CHECKSUM')
+
+package() {
+  install -Dm 755 "$srcdir/hello-world" "$pkgdir/usr/bin/hello-world"
+}

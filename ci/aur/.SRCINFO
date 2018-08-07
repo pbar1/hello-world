@@ -1,0 +1,12 @@
+pkgbase = pbar-hello-world-bin
+	pkgdesc = Hello world!
+	pkgver = VERSION
+	pkgrel = 1
+	url = https://github.com/pbar1/hello-world
+	arch = x86_64
+	license = Beerware
+	source_x86_64 = hello-world::https://github.com/pbar1/hello-world/releases/download/vVERSION/hello-world_vVERSION_linux_amd64
+	sha256sums_x86_64 = CHECKSUM
+
+pkgname = hello-world-bin
+
