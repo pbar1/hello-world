@@ -8,6 +8,13 @@ cp "$TRAVIS_BUILD_DIR/LICENSE" LICENSE.txt
 export VERSION=$(cat "$TRAVIS_BUILD_DIR/.version")
 sed -i "s/VERSION/$VERSION/g" "*.nuspec"
 
+curl -s https://api.github.com/repos/pbar1/hello-world/releases/$TRAVIS_TAG \
+| grep "https://github.com/pbar1/hello-world/releases/download" \
+| grep "windows" \
+| cut -d : -f 2,3 \
+| tr -d \" \
+| wget -qi - -O hello-world.exe
+
 function choco(){ sudo docker run --rm -v "$(pwd)":"$(pwd)" -w "$(pwd)" linuturk/mono-choco "$@" ;}
 choco pack
 choco push -s https://push.chocolatey.org/ -k "$CHOCO_API_KEY" --what-if
