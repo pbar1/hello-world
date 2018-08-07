@@ -4,8 +4,8 @@ set -e
 cd "$TRAVIS_BUILD_DIR/ci/choco"
 
 cp "$TRAVIS_BUILD_DIR/LICENSE" LICENSE.txt
-export VERSION=$(cat "$TRAVIS_BUILD_DIR/.version")
-sed -i "s/VERSION/$VERSION/g" "*.nuspec"
+export VERSION=$(echo "$TRAVIS_TAG" | tr -d v)
+sed -i "s/VERSION/$VERSION/g" "hello-world.nuspec"
 
 curl -s https://api.github.com/repos/pbar1/hello-world/releases/$TRAVIS_TAG \
 | grep "https://github.com/pbar1/hello-world/releases/download" \
