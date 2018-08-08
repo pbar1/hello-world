@@ -4,6 +4,8 @@ set -e
 cd "$TRAVIS_BUILD_DIR/ci/aur"
 
 cat sshconfig >> "$HOME/.ssh/config"
+openssl aes-256-cbc -K $encrypted_0df9e98ee504_key -iv $encrypted_0df9e98ee504_iv -in aur.enc -out ~/.ssh/aur -d
+chmod 400 ~/.ssh/aur
 
 git clone ssh://aur@aur.archlinux.org/pbar-hello-world-bin.git
 
