@@ -7,7 +7,7 @@ cat sshconfig >> "$HOME/.ssh/config"
 openssl aes-256-cbc -K $encrypted_0df9e98ee504_key -iv $encrypted_0df9e98ee504_iv -in aur.enc -out ~/.ssh/aur -d
 chmod 400 ~/.ssh/aur
 
-git clone ssh://aur@aur.archlinux.org/pbar-hello-world-bin.git
+# git clone ssh://aur@aur.archlinux.org/pbar-hello-world-bin.git
 
 curl -s https://api.github.com/repos/pbar1/hello-world/releases/$TRAVIS_TAG \
 | grep "https://github.com/pbar1/hello-world/releases/download" \
@@ -22,10 +22,10 @@ sed -i "s/VERSION/$VERSION/g" PKGBUILD .SRCINFO
 export CHECKSUM=$(sha256sum hello-world | cut -d ' ' -f 1)
 sed -i "s/CHECKSUM/$CHECKSUM/g" PKGBUILD .SRCINFO
 
-cp PKGBUILD pbar-hello-world-bin
-cp .SRCINFO pbar-hello-world-bin
-cd pbar-hello-world-bin
+# cp PKGBUILD pbar-hello-world-bin
+# cp .SRCINFO pbar-hello-world-bin
+# cd pbar-hello-world-bin
 
-git add PKGBUILD .SRCINFO
-git commit -m "Deployed $TRAVIS_TAG from Travis CI"
-git push
+# git add PKGBUILD .SRCINFO
+# git commit -m "Deployed $TRAVIS_TAG from Travis CI"
+# git push
