@@ -22,9 +22,9 @@ sed -i "s/VERSION/$VERSION/g" PKGBUILD .SRCINFO
 export CHECKSUM=$(sha256sum hello-world | cut -d ' ' -f 1)
 sed -i "s/CHECKSUM/$CHECKSUM/g" PKGBUILD .SRCINFO
 
-cp PKGBUILD pbar-hello-world
-cp .SRCINFO pbar-hello-world
-cd pbar-hello-world
+cp PKGBUILD pbar-hello-world-bin
+cp .SRCINFO pbar-hello-world-bin
+cd pbar-hello-world-bin
 
 git git add PKGBUILD .SRCINFO
 git commit -m "Deployed $TRAVIS_TAG from Travis CI"
