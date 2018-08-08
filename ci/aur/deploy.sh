@@ -26,6 +26,6 @@ cp PKGBUILD pbar-hello-world-bin
 cp .SRCINFO pbar-hello-world-bin
 cd pbar-hello-world-bin
 
-git git add PKGBUILD .SRCINFO
+git add PKGBUILD .SRCINFO
 git commit -m "Deployed $TRAVIS_TAG from Travis CI"
 git push
