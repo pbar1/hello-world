@@ -5,8 +5,7 @@ cd "$TRAVIS_BUILD_DIR/ci/aur"
 
 mkdir -p "$HOME/.ssh"
 cat sshconfig >> "$HOME/.ssh/config"
-openssl aes-256-cbc -K $encrypted_0df9e98ee504_key -iv $encrypted_0df9e98ee504_iv -in aur.enc -out "$HOME/.ssh/aur" -d
-ssh-keyscan aur.archlinux.org >> "$HOME/.ssh/known_hosts"
+openssl aes-256-cbc -K "$encrypted_0df9e98ee504_key" -iv "$encrypted_0df9e98ee504_iv" -in aur.enc -out "$HOME/.ssh/aur" -d
 echo "Configured SSH access to AUR"
 
 git clone ssh://aur@aur.archlinux.org/pbar-hello-world-bin.git
